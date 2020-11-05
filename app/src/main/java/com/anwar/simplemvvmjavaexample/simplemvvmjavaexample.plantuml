@@ -1,0 +1,76 @@
+@startuml
+
+title __SIMPLEMVVMJAVAEXAMPLE's Class Diagram__\n
+
+  namespace com.anwar.simplemvvmjavaexample {
+    interface com.anwar.simplemvvmjavaexample.Api {
+        {static} + BASE_URL : String
+        {abstract} + getModelDatas()
+    }
+  }
+  
+
+  namespace com.anwar.simplemvvmjavaexample {
+    class com.anwar.simplemvvmjavaexample.MainActivity {
+        ~ mainModelList : List<MainModel>
+        ~ recyclerView : RecyclerView
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.anwar.simplemvvmjavaexample {
+    class com.anwar.simplemvvmjavaexample.MainModel {
+        - imageurl : String
+        - name : String
+        + MainModel()
+        + getImageurl()
+        + getName()
+    }
+  }
+  
+
+  namespace com.anwar.simplemvvmjavaexample {
+    class com.anwar.simplemvvmjavaexample.MainModelAdapter {
+        ~ mCtx : Context
+        ~ mainModelList : List<MainModel>
+        + MainModelAdapter()
+        + getItemCount()
+        + onBindViewHolder()
+        + onCreateViewHolder()
+    }
+  }
+  
+
+  namespace com.anwar.simplemvvmjavaexample {
+    class com.anwar.simplemvvmjavaexample.MainModelAdapter.MainViewHolder {
+        ~ imageView : ImageView
+        ~ textView : TextView
+        + MainViewHolder()
+    }
+  }
+  
+
+  namespace com.anwar.simplemvvmjavaexample {
+    class com.anwar.simplemvvmjavaexample.MainViewModel {
+        - modelList : MutableLiveData<List<MainModel>>
+        + getModelDatas()
+        - loadModelData()
+    }
+  }
+  
+
+  com.anwar.simplemvvmjavaexample.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.anwar.simplemvvmjavaexample.MainActivity o-- com.anwar.simplemvvmjavaexample.MainModelAdapter : adapter
+  com.anwar.simplemvvmjavaexample.MainModelAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.anwar.simplemvvmjavaexample.MainModelAdapter +-down- com.anwar.simplemvvmjavaexample.MainModelAdapter.MainViewHolder
+  com.anwar.simplemvvmjavaexample.MainModelAdapter.MainViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.anwar.simplemvvmjavaexample.MainViewModel -up-|> androidx.lifecycle.ViewModel
+
+
+right footer
+
+http://www.plantuml.com/plantuml/uml/nLHVQzj037_tfn3iOHl1_W2bbBfkOHdn6CqMzZ0mggruD-wFESjEIjTzzlaSEtFjXyqfj8PIwVGxtUydARei6IrNIdeU2vO4IR9UnfzND_5c4tyCD-7Djz2vRqk899ObN0lCBQea-Quz3q2ZehB0b20rAa2zGnkKGXMIL5shdrWZxT6vyD2W0OHcijl_m0TX8Rexxdie6LcaZx20gt1zatozNS4PhDaAdVy5uLt95bDsi9muDXd9QsGitxrlGO_UuUyKvgcJ_q_MCGeTfYngmVS3-hz1DO6MpqgKt51t_yxZ_l1YWBIKtgUIx4RGhW7U3jmZwWqO7Lb2fXTLrd8ToF91ACofidBQ3B_bCJrVm36JuzvzRR-MNRBn-ITKhw0ppB1Wia-x6F6-aHGPpRJd4zgxW77-IH6OL6GgpKy2Hby9dRaP-61aDhhLpy8a_FBLQWzw7gFYjRFIJVMojmTnLz8k_AKpHtLx9O7ksUdegq6xuuhnJj9ArEJspVce_SF-J_TIdr0Qp8wXgS1vkyUl2l_N1Q3Eh17PFi2YQEuNoCuAmgA8Mg_7pqrlV7_-B-aCy61vCF_oM52_9kkcES5EP3bnCDoLGNZwMmi_CpljFtVwFNXkXlcgvxu-6ExnMr9i3vc38yRpF2lo7mnROvXiuvBEUlkoiIib_m00
+endfooter
+
+@enduml
